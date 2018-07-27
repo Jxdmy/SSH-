@@ -1,0 +1,40 @@
+ public void getNumberAndSort() {
+  String exper = "1-5, ^4,6,13,7,a1-100,^7B.,asd4,4,7,2";
+  String[] str = exper.split(",");
+  String[] last;
+  char[] element = null;
+
+  // 将切分后的数组，遍历成字符后，判定其中有没有字母，有的话把那个元素这只为a。
+  for (int i = 0; i < str.length; i++) {
+   for (int j = 0; j < str[i].length(); j++) {
+    element = str[i].toCharArray();
+    if ((element[j] >= 'a' && element[j] <= 'z') || (element[j] >= 'A' && element[j] <= 'Z')) {
+     str[i] = "a";
+    }
+   }
+  }
+  // 先将数组转换为字符串，再继续按照给定的分隔符分隔字符串。
+  last = (Arrays.toString(str)).split("\\-|\\s|,|\\^|a|\\[|\\]");
+
+  // 构建int集合，并把数字转为int存放在集合中。用set集合去除重复值而且默认有序。
+  Set<Integer> newNum = new HashSet();
+  for (int i = 0; i < last.length; i++) {
+   if (!last[i].equals("")) {
+    newNum.add(Integer.parseInt(last[i]));
+   }
+  }
+  // 冒泡排序
+//  int middle;
+//  for (int i = 0; i < num.length; i++) {
+//   for (int j = i + 1; j < num.length; j++) {
+//    if (num[i] > num[j]) {
+//     middle = num[i];
+//     num[i] = num[j];
+//     num[j] = middle;
+//    }
+//   }
+//  }
+  for (int i : newNum) {
+   System.out.println(i);
+  }
+ }
